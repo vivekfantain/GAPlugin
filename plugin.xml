@@ -30,7 +30,7 @@
 
         <source-file src="src/android/GAPlugin.java"
                 target-dir="src/com/adobe/plugins" />
-        <source-file src="src/android/libGoogleAnalyticsV2.jar"
+        <source-file src="src/android/libGoogleAnalyticsServices.jar"
                 target-dir="libs" />
     </platform>
 
