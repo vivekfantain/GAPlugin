@@ -18,9 +18,35 @@
     // eventLabel = The event label. This parameter may be a blank string to indicate no label.
     // eventValue = The event value. This parameter may be -1 to indicate no value.
     GAPlugin.prototype.trackEvent = function(success, fail, category, eventAction, eventLabel, eventValue) {
-        return cordovaRef.exec(success, fail, 'GAPlugin', 'trackEvent', [category, eventAction, eventLabel, eventValue]);
+
+        return cordovaRef.exec(success, fail, 'GAPlugin', 'trackEvent',
+                [category, eventAction, eventLabel, eventValue]);
+
     };
 
+    // Log a social event
+    // socialnetwork - the network which you will be posting
+    // socialAction - what action is being taken on the social network (tweek, post, like etc., )
+    //
+    //
+    GAPlugin.prototype.trackSocial = function(success, fail, socialnetwork, socialAction, socialURL) {
+    
+        return cordovaRef.exec(success, fail, 'GAPlugin', 'trackSocial',
+                [socialnetwork, socialAction, socialURL]); };
+
+    // Log a timing event
+    //
+    //category - Timing category
+    //timing - the time in milliseconds...
+    //name - optional : name of the timing event  
+    //label - optional : label of the timing event  
+    GAPlugin.prototype.trackTiming = function(success, fail, category, timing, name, label) {
+    
+        return cordovaRef.exec(success, fail, 'GAPlugin', 
+                                              'trackTiming', 
+                                              [category, timing, 
+                                               name, label]);
+    };
 
     // log a page view
     //
@@ -39,7 +65,17 @@
     GAPlugin.prototype.setVariable = function(success, fail, index, value) {
         return cordovaRef.exec(success, fail, 'GAPlugin', 'setVariable', [index, value]);
     };
+
+    GAPlugin.prototype.setDimension(success, fail, dimname, dimvalue)
+    {
+        return cordovaRef.exec(success, fail, 'GAPlugin', 'setDimension', [dimname, dimvalue]);
+    }
     
+    GAPlugin.prototype.setMetric(success, fail, mname, mvalue)
+    {
+        return cordovaRef.exec(success, fail, 'GAPlugin', 'setMetric', [mname, mvalue]);
+    }
+
     GAPlugin.prototype.exit = function(success, fail) {
         return cordovaRef.exec(success, fail, 'GAPlugin', 'exitGA', []);
     };

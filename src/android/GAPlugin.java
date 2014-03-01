@@ -37,7 +37,10 @@ public class GAPlugin extends CordovaPlugin {
 		} else if (action.equals("trackEvent")) {
 			try {
 				tracker.send(MapBuilder
-					      .createEvent(args.getString(0), args.getString(1), args.getString(2), args.isNull(3) ? null : args.getLong(3))
+					      .createEvent(args.getString(0), 
+                                       args.getString(1), 
+                                       args.getString(2), 
+                                       args.isNull(3) ? null : args.getLong(3))
 					      .build()
 					    );							
 				callback.success("trackEvent - category = " + args.getString(0) + "; action = " + args.getString(1) + "; label = " + args.getString(2) + "; value = " + args.getInt(3));
@@ -57,7 +60,35 @@ public class GAPlugin extends CordovaPlugin {
 			} catch (final Exception e) {
 				callback.error(e.getMessage());
 			}
-		} else if (action.equals("setVariable")) {
+		}
+        else if (action.equals("trackSocial")) {
+            try {
+                    tracker.send(MapBuilder
+                        .createSocial(args.getString(0),
+                                      args.getString(1),      
+                                      args.getString(2)).build());
+                    callback.success("trackSocial = " + 
+                                     args.getString(0));
+                    return true;
+			} catch (final Exception e) {
+				callback.error(e.getMessage());
+			}
+        }
+        else if (action.equals("trackTiming")) {
+            try {
+                    tracker.send(MapBuilder
+                        .createTiming(args.getString(0),
+                                      args.getInt(1),      
+                                      args.isNull(2) ? null : args.getString(2),
+                                      args.isNull(3) ? null : args.getString(3)).build());
+                    callback.success("trackTiming = " + 
+                                     args.getString(0));
+                    return true;
+			} catch (final Exception e) {
+				callback.error(e.getMessage());
+			}
+        }
+        else if (action.equals("setVariable")) {
 			try {				
 				tracker.send(MapBuilder.createAppView().set(Fields.customDimension(args.getInt(0)), args.getString(1)).build());			
 				callback.success("setVariable passed - index = " + args.getInt(0) + "; value = " + args.getString(1));
@@ -85,6 +116,7 @@ public class GAPlugin extends CordovaPlugin {
 				callback.error(e.getMessage());
 			}
 		}
-		return false;
+        else
+		    return false;
 	}
 }
