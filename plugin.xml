@@ -5,7 +5,7 @@
     version="2.3.1">
 
     <name>GAPlugin</name>
-  <author>Bob Easterday</author>
+  <author>Vivek Venugopalan</author>
 
   <description>
     This plugin allows you to post usage information to your Google Analytics account.
