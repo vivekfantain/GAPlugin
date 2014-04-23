@@ -66,12 +66,12 @@
         return cordovaRef.exec(success, fail, 'GAPlugin', 'setVariable', [index, value]);
     };
 
-    GAPlugin.prototype.setDimension(success, fail, dimname, dimvalue)
+    GAPlugin.prototype.setDimension = function(success, fail, dimname, dimvalue)
     {
         return cordovaRef.exec(success, fail, 'GAPlugin', 'setDimension', [dimname, dimvalue]);
     }
     
-    GAPlugin.prototype.setMetric(success, fail, mname, mvalue)
+    GAPlugin.prototype.setMetric = function(success, fail, mname, mvalue)
     {
         return cordovaRef.exec(success, fail, 'GAPlugin', 'setMetric', [mname, mvalue]);
     }
